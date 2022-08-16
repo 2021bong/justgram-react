@@ -70,6 +70,10 @@
   margin-left: 5px;
 }
 
+.ml15 {
+  margin-left: 15px;
+}
+
 /* font */
 .bold {
   font-weight: bold;
