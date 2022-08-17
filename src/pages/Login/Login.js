@@ -5,19 +5,17 @@ import styles from './Login.module.scss';
 
 const Login = () => {
   const [disabled, setDisabled] = useState(true);
-  const [idValue, setIdValue] = useState();
-  const [pwValue, setPwValue] = useState();
+  const [idValue, setIdValue] = useState('');
+  const [pwValue, setPwValue] = useState('');
   const idInputRef = useRef('');
   const pwInputRef = useRef('');
 
   const ableLoginBtn = () => {
     setIdValue(idInputRef.current.value);
     setPwValue(pwInputRef.current.value);
-    if (idValue.includes('@') && idValue.length >= 5 && pwValue.length >= 5) {
-      setDisabled(false);
-    } else {
-      setDisabled(true);
-    }
+    idValue.includes('@') && idValue.length >= 5 && pwValue.length >= 5
+      ? setDisabled(false)
+      : setDisabled(true);
   };
 
   return (
@@ -46,7 +44,7 @@ const Login = () => {
           </Link>
         </form>
         <div className="flex-center">
-          <a className={`${styles['find-pw']}`} href="#">
+          <a className={`${styles['find-pw']}`} href="/">
             비밀번호를 잊으셨나요?
           </a>
         </div>

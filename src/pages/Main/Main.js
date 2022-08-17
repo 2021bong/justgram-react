@@ -3,7 +3,6 @@ import Header from './Components/Header';
 import MainBody from './Components/MainBody';
 
 const Main = () => {
-  console.log('main');
   return (
     <div>
       <h1>hi</h1>

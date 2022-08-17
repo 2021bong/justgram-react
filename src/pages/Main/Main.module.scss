@@ -142,10 +142,14 @@ body {
 }
 
 /* profile-toggle */
+.toggle-parents {
+  position: relative;
+}
+
 #profile-menu {
   position: absolute;
-  top: 4.5em;
-  right: 26%;
+  top: 3em;
+  right: -10px;
   width: 15em;
   background-color: #fff;
   border-radius: 5px;
@@ -170,15 +174,16 @@ body {
 .menu-list {
   display: inline-block;
   margin: 2px 10px;
+  cursor: pointer;
 
   &:last-child {
     border-top: 1px solid #dbdbdb;
     width: 100%;
-    padding: 12px 0;
+    padding: 12px 0 0 0;
     margin-left: -1px;
 
-    a {
-      margin-left: 20px;
+    p {
+      margin: 8px 0 15px 18px;
     }
   }
 }
@@ -341,6 +346,7 @@ body {
   background-color: #fff;
   color: #1c95f6;
   font-weight: 700;
+  cursor: pointer;
 
   &:disabled {
     flex-basis: 10%;
@@ -356,10 +362,12 @@ body {
 @media (max-width: 640px) {
   .header-container {
     justify-content: space-between;
+    margin-right: 10px;
   }
 
   .search {
-    display: none;
+    visibility: hidden;
+    margin-left: 0;
   }
 }
 @media (640px < width < 799px) {

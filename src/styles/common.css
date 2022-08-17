@@ -88,6 +88,10 @@
   color: #8e8e8e;
 }
 
+.pointer {
+  cursor: pointer;
+}
+
 /* IR(Image Replacement) */
 /* Phark Method : 의미있는 이미지의 대체 텍스트를 제공하는 경우 */
 /* .ir_pm {

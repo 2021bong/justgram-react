@@ -1,25 +1,64 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
+import Comments from './Comments';
 import styles from '../Main.module.scss';
 
 const Feed = () => {
+  const [disabled, setDisabled] = useState(true);
+  const [id, setid] = useState(3);
+  const [commentInputValue, setCommentInputValue] = useState('');
+  const [comments, setComments] = useState([
+    {
+      id: 1,
+      userId: '2021bong',
+      content: '공부를 합시다!',
+    },
+    { id: 2, userId: 'happy2022', content: 'good :)' },
+  ]);
+  const commentRef = useRef();
+
+  const writeComment = () => {
+    setCommentInputValue(commentRef.current.value);
+    commentRef.current.value ? setDisabled(false) : setDisabled(true);
+  };
+
+  const addComment = (e) => {
+    setid(id + 1);
+    const newComment = {
+      id,
+      userId: 'guest1',
+      content: commentInputValue,
+    };
+
+    setComments((prevComments) => [...prevComments, newComment]);
+    commentRef.current.value = '';
+    console.log(comments);
+  };
+
+  const blockRefresh = (e) => {
+    e.preventDefault();
+  };
+
   return (
-    <section className={`${styles.feed}`}>
+    <section
+      className={`${styles.feed}`}
+      onKeyPress={(e) => {
+        if (e.key === 'Enter') {
+          addComment();
+        }
+      }}
+    >
       <div className={`${styles['feed-id']} vertical-center`}>
         <div className="vertical-center">
-          <a href="#">
-            <div className={`${styles['profile-cur']}`}></div>
-          </a>
-          <a href="#">
-            <span className={`${styles['feed-id-uid']} bold`}>2021bong</span>
-          </a>
+          <div className={`${styles['profile-cur']}`}></div>
+
+          <span className={`${styles['feed-id-uid']} bold`}>2021bong</span>
         </div>
-        <a href="#">
-          <img
-            className="medium-icon-setting"
-            src="/images/option.png"
-            alt="더보기 아이콘"
-          />
-        </a>
+
+        <img
+          className="medium-icon-setting"
+          src="/images/option.png"
+          alt="더보기 아이콘"
+        />
       </div>
       <div className={`${styles['feed-img-container']}`}>
         <div className={`${styles['feed-img']} flex-center`}>
@@ -33,41 +72,33 @@ const Feed = () => {
           <ul className="vertical-center">
             <div className={`${styles['img-menu-group']} vertical-center`}>
               <li>
-                <a href="#">
-                  <img
-                    className="icon-setting"
-                    alt="좋아요"
-                    src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/bearu/heart.png"
-                  />
-                </a>
+                <img
+                  className="icon-setting"
+                  alt="좋아요"
+                  src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/bearu/heart.png"
+                />
               </li>
               <li>
-                <a href="#">
-                  <img
-                    className="icon-setting"
-                    alt="댓글"
-                    src="/images/chat.png"
-                  />
-                </a>
+                <img
+                  className="icon-setting"
+                  alt="댓글"
+                  src="/images/chat.png"
+                />
               </li>
               <li>
-                <a href="#">
-                  <img
-                    className="icon-setting"
-                    alt="공유"
-                    src="/images/message_icon.png"
-                  />
-                </a>
+                <img
+                  className="icon-setting"
+                  alt="공유"
+                  src="/images/message_icon.png"
+                />
               </li>
             </div>
             <li>
-              <a href="#">
-                <img
-                  className="icon-setting"
-                  alt="저장"
-                  src="/images/bookmark.png"
-                />
-              </a>
+              <img
+                className="icon-setting"
+                alt="저장"
+                src="/images/bookmark.png"
+              />
             </li>
           </ul>
         </div>
@@ -77,24 +108,31 @@ const Feed = () => {
         <p className={`${styles['feed-cont']}`}>
           <span className={`bold mr5 ${['feed-cont-uid']}`}>2021Bong</span>
           <span className={`${styles['feed-cont-com']}`}>공부화이팅</span>
-          <a href="#" className="color-gray ml5">
-            더 보기
-          </a>
+          <span className="color-gray ml5 pointer">더 보기</span>
         </p>
-        <a href="#" className={`${styles['feed-all-comment']} color-gray`}>
-          댓글 1개 모두 보기
-        </a>
+        <span className="color-gray pointer">댓글 1개 모두 보기</span>
+        <Comments propsComments={comments} />
         <p className={`${styles['feed-cont-time']} color-gray`}>몇 시간전</p>
       </div>
       <div className={`${styles['feed-com']} vertical-center`}>
         <div className={`${styles['smile-icon']}`}></div>
-        <form className={`${styles['feed-com-form']} vertical-center`}>
+        <form
+          className={`${styles['feed-com-form']} vertical-center`}
+          onSubmit={blockRefresh}
+        >
           <input
             className={`${styles['comment-input']}`}
             type="text"
             placeholder="댓글 달기..."
+            onChange={writeComment}
+            ref={commentRef}
           />
-          <button type="submit" className={`${styles['comment-btn']}`} disabled>
+          <button
+            type="button"
+            className={`${styles['comment-btn']}`}
+            onClick={addComment}
+            disabled={disabled}
+          >
             게시
           </button>
         </form>

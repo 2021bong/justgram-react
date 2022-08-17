@@ -1,52 +1,57 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import styles from '../Main.module.scss';
 
-const ProfileToggle = () => {
+const ProfileToggle = ({ visibility }) => {
   return (
-    <ul id="profile-menu" class="flex-column" style="visibility: hidden">
-      <li class="menu-list width80">
-        <a href="#" class="vertical-center-left">
+    <ul
+      id={`${styles['profile-menu']}`}
+      className="flex-column"
+      style={{ visibility }}
+    >
+      <li className={`${styles['menu-list']} width80`}>
+        <div href="#" className="vertical-center-left">
           <img
-            class="small-icon-setting mr10"
-            src="./img/user.png"
+            className="small-icon-setting mr10"
+            src="/images/user.png"
             alt="프로필 아이콘"
           />
           <p>프로필</p>
-        </a>
+        </div>
       </li>
-      <li class="menu-list width80">
-        <a href="#" class="vertical-center-left">
+      <li className={`${styles['menu-list']} width80`}>
+        <div href="#" className="vertical-center-left">
           <img
-            class="small-icon-setting mr10"
-            src="./img/bookmark.png"
+            className="small-icon-setting mr10"
+            src="/images/bookmark.png"
             alt="저장됨 아이콘"
           />
           <p>저장됨</p>
-        </a>
+        </div>
       </li>
-      <li class="menu-list width80">
-        <a href="#" class="vertical-center-left">
+      <li className={`${styles['menu-list']} width80`}>
+        <div href="#" className="vertical-center-left">
           <img
-            class="small-icon-setting mr10"
-            src="./img/settings.png"
+            className="small-icon-setting mr10"
+            src="/images/settings.png"
             alt="설정 아이콘"
           />
           <p>설정</p>
-        </a>
+        </div>
       </li>
-      <li class="menu-list width80">
-        <a href="#" class="vertical-center-left">
+      <li className={`${styles['menu-list']} width80`}>
+        <div href="#" className="vertical-center-left">
           <img
-            class="small-icon-setting mr10"
-            src="./img/change.png"
+            className="small-icon-setting mr10"
+            src="/images/change.png"
             alt="계정 전환 아이콘"
           />
           <p>계정 전환</p>
-        </a>
+        </div>
       </li>
-      <li class="menu-list">
+      <li className={`${styles['menu-list']} ml15`}>
         <Link to="/">
-          <a href="#"> 로그아웃 </a>
+          <p> 로그아웃 </p>
         </Link>
       </li>
     </ul>
