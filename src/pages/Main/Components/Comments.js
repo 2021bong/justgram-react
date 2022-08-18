@@ -1,18 +1,18 @@
 import styles from '../Main.module.scss';
+import Comment from './Comment';
 
-const Comments = ({ propsComments }) => {
+const Comments = ({ propsComments, deleteComment }) => {
   return (
     <ul className={`${styles['new-com-container']}`}>
       {propsComments.map((comment) => {
         return (
-          <li key={comment.id} className={`${styles['new-com']}`}>
-            <span className="bold mr5">{comment.userId}</span>
-            {comment.content}
-            <span
-              className={`icon-setting ${styles['heart']} ${styles['hearts']}`}
-            ></span>
-            <span className={`icon-setting ${styles['x-icon']}`}></span>
-          </li>
+          <Comment
+            key={comment.id}
+            id={comment.id}
+            userId={comment.userId}
+            content={comment.content}
+            deleteComment={deleteComment}
+          />
         );
       })}
     </ul>

@@ -179,11 +179,11 @@ body {
   &:last-child {
     border-top: 1px solid #dbdbdb;
     width: 100%;
-    padding: 12px 0 0 0;
     margin-left: -1px;
 
     p {
-      margin: 8px 0 15px 18px;
+      margin: 0 0;
+      padding: 16px 0 16px 18px;
     }
   }
 }

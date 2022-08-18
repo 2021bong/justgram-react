@@ -30,42 +30,42 @@ const Header = () => {
           </div>
           <nav className={`${styles.nav} ml15`}>
             <ul>
-              <li>
+              <li className="pointer">
                 <img
                   className="icon-setting"
                   alt="홈으로"
                   src="/images/home_icon.png"
                 />
               </li>
-              <li>
+              <li className="pointer">
                 <img
                   className="icon-setting"
                   alt="메세지"
                   src="/images/message_icon.png"
                 />
               </li>
-              <li>
+              <li className="pointer">
                 <img
                   className="icon-setting"
                   alt="게시글 작성"
                   src="/images/plus_icon.png"
                 />
               </li>
-              <li>
+              <li className="pointer">
                 <img
                   className="icon-setting"
                   alt="탐색"
                   src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/bearu/explore.png"
                 />
               </li>
-              <li>
+              <li className="pointer">
                 <img
                   className="icon-setting"
                   alt="소식"
                   src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/bearu/heart.png"
                 />
               </li>
-              <li className={`${styles['toggle-parents']}`}>
+              <li className={`${styles['toggle-parents']} pointer`}>
                 <div onClick={showToggle} id={styles['profile-btn']}>
                   <img
                     className="icon-setting curcle"

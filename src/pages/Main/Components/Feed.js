@@ -22,7 +22,11 @@ const Feed = ({
     },
     { id: 2, userId: 'happy2022', content: 'good :)' },
   ]);
+  const [like, setLike] = useState(true);
+  const [heartUrl, setHeartUrl] = useState('images/heart_empty.png');
+
   const commentRef = useRef();
+
   const writeComment = () => {
     setCommentInputValue(commentRef.current.value);
     commentRef.current.value ? setDisabled(false) : setDisabled(true);
@@ -38,11 +42,29 @@ const Feed = ({
 
     setComments((prevComments) => [...prevComments, newComment]);
     commentRef.current.value = '';
-    console.log(comments);
+  };
+
+  const deleteComment = (e) => {
+    if (window.confirm('정말 삭제 하시겠습니까?')) {
+      const deleteIndex = e.nativeEvent.target.id;
+      setComments((prevComments) => {
+        const deletedComments = prevComments.filter((comment) => {
+          if (comment.id != deleteIndex) return comment;
+        });
+        return deletedComments;
+      });
+    } else {
+      return;
+    }
   };
 
   const blockRefresh = (e) => {
     e.preventDefault();
+  };
+
+  const likeFeed = () => {
+    setLike((like) => !like);
+    setHeartUrl(like ? 'images/heart_full.png' : 'images/heart_empty.png');
   };
 
   return (
@@ -77,12 +99,8 @@ const Feed = ({
         <div className={`${styles['feed-img-menu']}`}>
           <ul className="vertical-center">
             <div className={`${styles['img-menu-group']} vertical-center`}>
-              <li>
-                <img
-                  className="icon-setting"
-                  alt="좋아요"
-                  src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/bearu/heart.png"
-                />
+              <li onClick={likeFeed}>
+                <img className="icon-setting" alt="좋아요" src={heartUrl} />
               </li>
               <li>
                 <img
@@ -119,7 +137,7 @@ const Feed = ({
           <span className="color-gray ml5 pointer">더 보기</span>
         </p>
         <span className="color-gray pointer">{`댓글 ${allComment}개 모두 보기`}</span>
-        <Comments propsComments={comments} />
+        <Comments propsComments={comments} deleteComment={deleteComment} />
         <p
           className={`${styles['feed-cont-time']} color-gray`}
         >{`${createdTime}시간전`}</p>
