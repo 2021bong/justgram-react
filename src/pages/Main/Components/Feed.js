@@ -2,7 +2,15 @@ import React, { useRef, useState } from 'react';
 import Comments from './Comments';
 import styles from '../Main.module.scss';
 
-const Feed = () => {
+const Feed = ({
+  userName,
+  imageSrc,
+  imageAlt,
+  likeCount,
+  content,
+  allComment,
+  createdTime,
+}) => {
   const [disabled, setDisabled] = useState(true);
   const [id, setid] = useState(3);
   const [commentInputValue, setCommentInputValue] = useState('');
@@ -15,7 +23,6 @@ const Feed = () => {
     { id: 2, userId: 'happy2022', content: 'good :)' },
   ]);
   const commentRef = useRef();
-
   const writeComment = () => {
     setCommentInputValue(commentRef.current.value);
     commentRef.current.value ? setDisabled(false) : setDisabled(true);
@@ -41,9 +48,12 @@ const Feed = () => {
   return (
     <section
       className={`${styles.feed}`}
-      onKeyPress={(e) => {
+      onKeyDown={(e) => {
         if (e.key === 'Enter') {
-          addComment();
+          if (e.nativeEvent.isComposing === false) {
+            e.preventDefault();
+            addComment();
+          }
         }
       }}
     >
@@ -51,7 +61,7 @@ const Feed = () => {
         <div className="vertical-center">
           <div className={`${styles['profile-cur']}`}></div>
 
-          <span className={`${styles['feed-id-uid']} bold`}>2021bong</span>
+          <span className={`${styles['feed-id-uid']} bold`}>{userName}</span>
         </div>
 
         <img
@@ -62,11 +72,7 @@ const Feed = () => {
       </div>
       <div className={`${styles['feed-img-container']}`}>
         <div className={`${styles['feed-img']} flex-center`}>
-          <img
-            className={`${styles.img}`}
-            src="/images/board_img.png"
-            alt="과일스티커"
-          />
+          <img className={`${styles.img}`} src={imageSrc} alt={imageAlt} />
         </div>
         <div className={`${styles['feed-img-menu']}`}>
           <ul className="vertical-center">
@@ -104,15 +110,19 @@ const Feed = () => {
         </div>
       </div>
       <div className={`${styles['feed-cont-container']}`}>
-        <p className={`bold ${styles['like-count']}`}>좋아요 100개</p>
+        <p
+          className={`bold ${styles['like-count']}`}
+        >{`좋아요 ${likeCount}개`}</p>
         <p className={`${styles['feed-cont']}`}>
-          <span className={`bold mr5 ${['feed-cont-uid']}`}>2021Bong</span>
-          <span className={`${styles['feed-cont-com']}`}>공부화이팅</span>
+          <span className={`bold mr5 ${['feed-cont-uid']}`}>{userName}</span>
+          <span className={`${styles['feed-cont-com']}`}>{content}</span>
           <span className="color-gray ml5 pointer">더 보기</span>
         </p>
-        <span className="color-gray pointer">댓글 1개 모두 보기</span>
+        <span className="color-gray pointer">{`댓글 ${allComment}개 모두 보기`}</span>
         <Comments propsComments={comments} />
-        <p className={`${styles['feed-cont-time']} color-gray`}>몇 시간전</p>
+        <p
+          className={`${styles['feed-cont-time']} color-gray`}
+        >{`${createdTime}시간전`}</p>
       </div>
       <div className={`${styles['feed-com']} vertical-center`}>
         <div className={`${styles['smile-icon']}`}></div>
