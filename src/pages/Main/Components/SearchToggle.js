@@ -1,7 +1,8 @@
-import React, { forwardRef, useState } from "react";
+import React, { forwardRef, useState, useEffect } from "react";
 import styles from "../Main.module.scss";
 import SearchItem from "./SearchItem";
 import SearchLoading from "./SearchLoading";
+import axios from "axios";
 
 const SearchToggle = forwardRef(
   (
@@ -14,80 +15,14 @@ const SearchToggle = forwardRef(
     },
     ref
   ) => {
-    const [userInfo, setUserInfo] = useState([
-      {
-        id: 1,
-        profileImg: "/images/default_profile.png",
-        userId: "justcode",
-        desc: "> 저스트코드 | 부트캠프",
-      },
-      {
-        id: 2,
-        profileImg: "/images/default_profile.png",
-        userId: "justuser",
-        desc: "걍 유저입니다",
-      },
-      {
-        id: 3,
-        profileImg: "/images/default_profile.png",
-        userId: "just_do_it!",
-        desc: "나이키를 좋아합니다",
-      },
-      {
-        id: 4,
-        profileImg: "/images/default_profile.png",
-        userId: "happy2022",
-        desc: "홍길동(hong gil dong)",
-      },
-      {
-        id: 5,
-        profileImg: "/images/bongprofile.png",
-        userId: "2021bong",
-        desc: "봉원희입니다",
-      },
-      {
-        id: 6,
-        profileImg: "/images/bongprofile.png",
-        userId: "bong_bong",
-        desc: "봉보로봉봉",
-      },
-      {
-        id: 7,
-        profileImg: "/images/default_profile.png",
-        userId: "yahoho",
-        desc: "",
-      },
-      {
-        id: 8,
-        profileImg: "/images/default_profile.png",
-        userId: "alkjgjlsgls",
-        desc: "#f4f",
-      },
-      {
-        id: 9,
-        profileImg: "/images/heart_full.png",
-        userId: "__._.__",
-        desc: "2000.02.02",
-      },
-      {
-        id: 10,
-        profileImg: "/images/heart_full.png",
-        userId: "poyilb",
-        desc: "오목을 좋아하는 changyoung park",
-      },
-      {
-        id: 11,
-        profileImg: "/images/heart_full.png",
-        userId: "yewon_J",
-        desc: "justcode 6기",
-      },
-      {
-        id: 12,
-        profileImg: "/images/heart_full.png",
-        userId: "ioni19",
-        desc: "맞팔을 기다리는 yewon jung",
-      },
-    ]);
+    const [userInfo, setUserInfo] = useState([]);
+
+    useEffect(() => {
+      axios
+        .get("http://localhost:3000/data/profiles.json")
+        .then((res) => setUserInfo(res.data))
+        .catch((err) => console.log(err));
+    }, []);
 
     const selectView = () => {
       let filterData = userInfo

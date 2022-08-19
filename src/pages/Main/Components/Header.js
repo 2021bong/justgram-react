@@ -1,40 +1,40 @@
-import React, { useEffect, useRef, useState } from "react";
-import SearchToggle from "./SearchToggle";
-import ProfileToggle from "./ProfileToggle";
-import styles from "../Main.module.scss";
+import React, { useEffect, useRef, useState } from 'react';
+import SearchToggle from './SearchToggle';
+import ProfileToggle from './ProfileToggle';
+import styles from '../Main.module.scss';
 
 const Header = () => {
-  const [profileVisibility, setProfileVisibility] = useState("hidden");
-  const [searchVisibility, setSearchVisibility] = useState("hidden");
-  const [buttonVisibility, setButtonVisibility] = useState("hidden");
-  const [searchKeyword, setSearchKeyword] = useState("");
+  const [profileVisibility, setProfileVisibility] = useState('hidden');
+  const [searchVisibility, setSearchVisibility] = useState('hidden');
+  const [buttonVisibility, setButtonVisibility] = useState('hidden');
+  const [searchKeyword, setSearchKeyword] = useState('');
   const searchInput = useRef();
   const [nowSearching, setNowSearching] = useState(false);
 
   const showToggle = () => {
     setProfileVisibility((visibility) =>
-      visibility === "hidden" ? "visible" : "hidden"
+      visibility === 'hidden' ? 'visible' : 'hidden'
     );
   };
   const onStartSearch = () => {
-    setSearchVisibility("visible");
-    setButtonVisibility("visible");
+    setSearchVisibility('visible');
+    setButtonVisibility('visible');
   };
   const onEndSearch = () => {
-    setSearchVisibility("hidden");
+    setSearchVisibility('hidden');
     searchInput.current.value
-      ? setButtonVisibility("visible")
-      : setButtonVisibility("hidden");
+      ? setButtonVisibility('visible')
+      : setButtonVisibility('hidden');
   };
   const onSearch = (e) => {
-    setSearchVisibility("visible");
-    setButtonVisibility("visible");
+    setSearchVisibility('visible');
+    setButtonVisibility('visible');
     e.target.value ? setNowSearching(true) : setNowSearching(false);
     setSearchKeyword(searchInput.current.value);
   };
 
   const onClearInput = () => {
-    searchInput.current.value = "";
+    searchInput.current.value = '';
     searchInput.current.value ? setNowSearching(true) : setNowSearching(false);
     onEndSearch();
   };
@@ -42,13 +42,13 @@ const Header = () => {
   return (
     <>
       <header className={`${styles.header}`}>
-        <div className={`${styles["header-container"]} flex-center`}>
+        <div className={`${styles['header-container']} flex-center`}>
           <h2 className={`${styles.title} mr10`}>justgram</h2>
 
           <div className={`${styles.search}`}>
-            <div className={`${styles["search-container"]}`}>
+            <div className={`${styles['search-container']}`}>
               <img
-                className={`${styles["search-icon"]}`}
+                className={`${styles['search-icon']}`}
                 src='/images/search_icon.png'
                 alt='검색 아이콘'
               />
@@ -109,8 +109,8 @@ const Header = () => {
                   src='https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/bearu/heart.png'
                 />
               </li>
-              <li className={`${styles["toggle-parents"]} pointer`}>
-                <div onClick={showToggle} id={styles["profile-btn"]}>
+              <li className={`${styles['toggle-parents']} pointer`}>
+                <div onClick={showToggle} id={styles['profile-btn']}>
                   <img
                     className='icon-setting curcle'
                     alt='프로필'

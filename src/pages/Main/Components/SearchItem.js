@@ -6,10 +6,10 @@ const SearchItem = ({ profileImg, userId, desc }) => {
       <img
         className={`${styles['search-user-profile']} mr15 curcle`}
         src={profileImg}
-        alt="user profile img"
+        alt='user profile img'
       />
       <div>
-        <p className="bold">{userId}</p>
+        <p className='bold'>{userId}</p>
         <p className={`${styles['feed-cont-more']}`}>{desc}</p>
       </div>
       <span className={`icon-setting ${styles['x-icon']} mr15`}></span>

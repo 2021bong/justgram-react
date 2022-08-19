@@ -24,27 +24,27 @@ const Login = () => {
         <h1 className={`${styles['login-title']}`}>justgram</h1>
         <form className={`${styles['login-form']}`}>
           <LoginInput
-            id="uid"
-            type="text"
-            placeholder="전화번호, 사용자 이름 또는 이메일"
+            id='uid'
+            type='text'
+            placeholder='전화번호, 사용자 이름 또는 이메일'
             onAbleLoginBtn={ableLoginBtn}
             ref={idInputRef}
           ></LoginInput>
           <LoginInput
-            id="upw"
-            type="password"
-            placeholder="비밀번호"
+            id='upw'
+            type='password'
+            placeholder='비밀번호'
             onAbleLoginBtn={ableLoginBtn}
             ref={pwInputRef}
           ></LoginInput>
-          <Link to="/main">
+          <Link to='/main'>
             <button id={`${styles['login-btn']}`} disabled={disabled}>
               로그인
             </button>
           </Link>
         </form>
-        <div className="flex-center">
-          <a className={`${styles['find-pw']}`} href="/">
+        <div className='flex-center'>
+          <a className={`${styles['find-pw']}`} href='/'>
             비밀번호를 잊으셨나요?
           </a>
         </div>
