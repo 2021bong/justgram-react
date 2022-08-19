@@ -1,8 +1,8 @@
-import React, { forwardRef, useState, useEffect } from "react";
-import styles from "../Main.module.scss";
-import SearchItem from "./SearchItem";
-import SearchLoading from "./SearchLoading";
-import axios from "axios";
+import React, { forwardRef, useState, useEffect } from 'react';
+import styles from '../Main.module.scss';
+import SearchItem from './SearchItem';
+import SearchLoading from './SearchLoading';
+import axios from 'axios';
 
 const SearchToggle = forwardRef(
   (
@@ -19,7 +19,7 @@ const SearchToggle = forwardRef(
 
     useEffect(() => {
       axios
-        .get("http://localhost:3000/data/profiles.json")
+        .get('data/profiles.json')
         .then((res) => setUserInfo(res.data))
         .catch((err) => console.log(err));
     }, []);
@@ -34,7 +34,7 @@ const SearchToggle = forwardRef(
           }
         })
         .map((info) => {
-          console.log(info, "map info");
+          console.log(info, 'map info');
           return (
             <SearchItem
               key={info.id}
@@ -45,7 +45,7 @@ const SearchToggle = forwardRef(
           );
         });
       if (filterData.length == 0) {
-        return <SearchLoading textKR={"검색 결과 없음"} textEN={"No Result"} />;
+        return <SearchLoading textKR={'검색 결과 없음'} textEN={'No Result'} />;
       } else {
         return filterData;
       }
@@ -54,7 +54,7 @@ const SearchToggle = forwardRef(
     return (
       <>
         <ul
-          id={`${styles["search-list-container"]}`}
+          id={`${styles['search-list-container']}`}
           style={{ visibility: searchVisibility }}
         >
           {nowSearching ? null : (
@@ -78,13 +78,13 @@ const SearchToggle = forwardRef(
         </ul>
         <div>
           <button
-            id={`${styles["searchBtn"]}`}
+            id={`${styles['searchBtn']}`}
             onClick={onClearInput}
             style={{ visibility: buttonVisibility }}
           >
             <img
-              className={`${styles["delete-icon"]}`}
-              src='/images/delete.png'
+              className={`${styles['delete-icon']}`}
+              src='images/delete.png'
               alt='삭제 버튼'
             />
           </button>

@@ -81,7 +81,7 @@ const Feed = ({
 
         <img
           className='medium-icon-setting'
-          src='/images/option.png'
+          src='images/option.png'
           alt='더보기 아이콘'
         />
       </div>
@@ -99,14 +99,14 @@ const Feed = ({
                 <img
                   className='icon-setting'
                   alt='댓글'
-                  src='/images/chat.png'
+                  src='images/chat.png'
                 />
               </li>
               <li>
                 <img
                   className='icon-setting'
                   alt='공유'
-                  src='/images/message_icon.png'
+                  src='images/message_icon.png'
                 />
               </li>
             </div>
@@ -114,7 +114,7 @@ const Feed = ({
               <img
                 className='icon-setting'
                 alt='저장'
-                src='/images/bookmark.png'
+                src='images/bookmark.png'
               />
             </li>
           </ul>

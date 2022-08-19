@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import SearchToggle from './SearchToggle';
 import ProfileToggle from './ProfileToggle';
 import styles from '../Main.module.scss';
@@ -49,7 +49,7 @@ const Header = () => {
             <div className={`${styles['search-container']}`}>
               <img
                 className={`${styles['search-icon']}`}
-                src='/images/search_icon.png'
+                src='images/search_icon.png'
                 alt='검색 아이콘'
               />
               <input
@@ -78,21 +78,21 @@ const Header = () => {
                 <img
                   className='icon-setting'
                   alt='홈으로'
-                  src='/images/home_icon.png'
+                  src='images/home_icon.png'
                 />
               </li>
               <li className='pointer'>
                 <img
                   className='icon-setting'
                   alt='메세지'
-                  src='/images/message_icon.png'
+                  src='images/message_icon.png'
                 />
               </li>
               <li className='pointer'>
                 <img
                   className='icon-setting'
                   alt='게시글 작성'
-                  src='/images/plus_icon.png'
+                  src='images/plus_icon.png'
                 />
               </li>
               <li className='pointer'>
@@ -114,7 +114,7 @@ const Header = () => {
                   <img
                     className='icon-setting curcle'
                     alt='프로필'
-                    src='/images/default_profile.png'
+                    src='images/default_profile.png'
                   />
                 </div>
                 <ProfileToggle visibility={profileVisibility} />

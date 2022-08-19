@@ -8,7 +8,7 @@ const MainBody = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:3000/data/feeds.json')
+      .get('data/feeds.json')
       .then((res) => setFeeds(res.data))
       .catch((err) => console.log(err));
   }, []);

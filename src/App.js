@@ -6,7 +6,7 @@ import './styles/reset.css';
 
 function App() {
   return (
-    <Router>
+    <Router basename='/justgram-react/'>
       <Routes>
         <Route path='/' element={<Login />} />
         <Route path='/main' element={<Main />} />
