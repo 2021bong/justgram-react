@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/justgram-react/static/css/main.3fd10c2c.css",
-    "main.js": "/justgram-react/static/js/main.04a94659.js",
+    "main.js": "/justgram-react/static/js/main.cc8e6f3e.js",
     "static/media/heart_empty.png": "/justgram-react/static/media/heart_empty.c412cbaead4744166c20.png",
     "static/media/smile.png": "/justgram-react/static/media/smile.ac400699f67aebe9b30d.png",
     "static/media/heart_full.png": "/justgram-react/static/media/heart_full.556c78a5a9b89d6b2eeb.png",
     "index.html": "/justgram-react/index.html",
     "main.3fd10c2c.css.map": "/justgram-react/static/css/main.3fd10c2c.css.map",
-    "main.04a94659.js.map": "/justgram-react/static/js/main.04a94659.js.map"
+    "main.cc8e6f3e.js.map": "/justgram-react/static/js/main.cc8e6f3e.js.map"
   },
   "entrypoints": [
     "static/css/main.3fd10c2c.css",
-    "static/js/main.04a94659.js"
+    "static/js/main.cc8e6f3e.js"
   ]
 }
