@@ -4,37 +4,38 @@ import ProfileToggle from "./ProfileToggle";
 import styles from "../Main.module.scss";
 
 const Header = () => {
-  const [visibility, setVisibility] = useState("hidden");
-  const [toggleVisibility, setToggleVisibility] = useState("hidden");
+  const [profileVisibility, setProfileVisibility] = useState("hidden");
+  const [searchVisibility, setSearchVisibility] = useState("hidden");
   const [buttonVisibility, setButtonVisibility] = useState("hidden");
+  const [searchKeyword, setSearchKeyword] = useState("");
   const searchInput = useRef();
-  const [nowSearching, setNowSearching] = useState(true);
+  const [nowSearching, setNowSearching] = useState(false);
 
   const showToggle = () => {
-    setVisibility((visibility) =>
+    setProfileVisibility((visibility) =>
       visibility === "hidden" ? "visible" : "hidden"
     );
   };
   const onStartSearch = () => {
-    setToggleVisibility("visible");
+    setSearchVisibility("visible");
     setButtonVisibility("visible");
-    setNowSearching(true);
   };
   const onEndSearch = () => {
-    setToggleVisibility("hidden");
-    setButtonVisibility("hidden");
-    if (searchInput.current.value) {
-      setButtonVisibility("visible");
-    }
+    setSearchVisibility("hidden");
+    searchInput.current.value
+      ? setButtonVisibility("visible")
+      : setButtonVisibility("hidden");
   };
-  const onSearch = () => {
-    setToggleVisibility("visible");
+  const onSearch = (e) => {
+    setSearchVisibility("visible");
     setButtonVisibility("visible");
-    setNowSearching(false);
+    e.target.value ? setNowSearching(true) : setNowSearching(false);
+    setSearchKeyword(searchInput.current.value);
   };
 
   const onClearInput = () => {
     searchInput.current.value = "";
+    searchInput.current.value ? setNowSearching(true) : setNowSearching(false);
     onEndSearch();
   };
 
@@ -62,10 +63,12 @@ const Header = () => {
               />
 
               <SearchToggle
-                toggleVisibility={toggleVisibility}
+                searchVisibility={searchVisibility}
                 buttonVisibility={buttonVisibility}
                 nowSearching={nowSearching}
                 onClearInput={onClearInput}
+                ref={searchInput}
+                searchKeyword={searchKeyword}
               />
             </div>
           </div>
@@ -114,7 +117,7 @@ const Header = () => {
                     src='/images/default_profile.png'
                   />
                 </div>
-                <ProfileToggle visibility={visibility} />
+                <ProfileToggle visibility={profileVisibility} />
               </li>
             </ul>
           </nav>
